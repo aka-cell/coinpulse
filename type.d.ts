@@ -224,7 +224,7 @@ interface CoinDetailsData {
 
 interface LiveDataProps {
   coinId: string;
-  poolId: string;
+  // poolId: string;
   coin: CoinDetailsData;
   coinOHLCData?: OHLCData[];
   children?: React.ReactNode;
@@ -249,7 +249,7 @@ interface Category {
 
 interface UseCoinGeckoWebSocketProps {
   coinId: string;
-  poolId: string;
+  // poolId: string;
   liveInterval?: '1s' | '1m';
 }
 
