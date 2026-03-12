@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { SearchModal } from '@/components/SearchModal';
+import { AuthButtons } from '@/components/AuthButtons';
 
 const Header = ({ trendingCoins }: HeaderProps) => {
   const pathname = usePathname();
@@ -19,24 +20,26 @@ const Header = ({ trendingCoins }: HeaderProps) => {
         <nav>
           <Link
             href="/"
-            className={cn('nav-link', {
-              'is-active': pathname === '/',
-              'is-home': true,
-            })}
+            className={cn('nav-link', { 'is-active': pathname === '/', 'is-home': true })}
           >
             Home
           </Link>
 
           <SearchModal initialTrendingCoins={trendingCoins} />
 
-          <Link
-            href="/coins"
-            className={cn('nav-link', {
-              'is-active': pathname === '/coins',
-            })}
-          >
+          <Link href="/coins" className={cn('nav-link', { 'is-active': pathname === '/coins' })}>
             All Coins
           </Link>
+
+          <Link href="/trade" className={cn('nav-link', { 'is-active': pathname === '/trade' })}>
+            Trade
+          </Link>
+
+          <Link href="/news" className={cn('nav-link', { 'is-active': pathname === '/news' })}>
+            News
+          </Link>
+
+          <AuthButtons />
         </nav>
       </div>
     </header>

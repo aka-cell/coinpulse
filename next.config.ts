@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
                 hostname: "coin-images.coingecko.com",
             },
         ]
+     ,
+  domains: ['images.cryptocompare.com'],
+
     }
 };
 
