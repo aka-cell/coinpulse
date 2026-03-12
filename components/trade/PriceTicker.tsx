@@ -11,7 +11,7 @@ type PriceTickerProps = {
 };
 
 export const PriceTicker = ({ coinSymbol, coinId, onPriceUpdate }: PriceTickerProps) => {
-  const { price, isConnected } = useCoinGeckoWebSocket({ coinSymbol, coinId, liveInterval: '1s' });
+  const { price } = useCoinGeckoWebSocket({ coinSymbol, coinId, liveInterval: '1s' });
   const prevPriceRef = useRef<number | null>(null);
   const [flash, setFlash] = useState<'up' | 'down' | null>(null);
 
@@ -32,8 +32,8 @@ export const PriceTicker = ({ coinSymbol, coinId, onPriceUpdate }: PriceTickerPr
   return (
     <div className="price-ticker">
       <div className="price-ticker__status">
-        <span className={cn('price-ticker__dot', isConnected ? 'is-live' : 'is-offline')} />
-        <span className="price-ticker__label">{isConnected ? 'LIVE' : 'OFFLINE'}</span>
+        <span className="price-ticker__dot is-live" />
+        <span className="price-ticker__label">LIVE</span>
       </div>
 
       <div
