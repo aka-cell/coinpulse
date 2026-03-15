@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import { fetcher } from '@/lib/coingecko.actions';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,14 +25,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const trending = await fetcher<{ coins: TrendingCoin[] }>('/search/trending').catch(() => ({ coins: [] }));
+  const trending = await fetcher<{ coins: TrendingCoin[] }>('/search/trending').catch(() => ({
+    coins: [],
+  }));
 
   return (
-    <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header trendingCoins={trending.coins} />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="dark" suppressHydrationWarning>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <Header trendingCoins={trending.coins} />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
